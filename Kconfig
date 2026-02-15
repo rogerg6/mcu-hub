@@ -1,0 +1,190 @@
+# Main Kconfig for mcu-hub project
+# Multi-platform MCU project configuration
+
+mainmenu "mcu-hub Configuration"
+
+menu "Platform Selection"
+
+choice
+	prompt "Select Platform"
+	default PLATFORM_STM32F429
+	help
+	  Select the target platform for mcu-hub
+
+config PLATFORM_STM32F429
+	bool "STM32F429"
+	select USE_HAL_DRIVER
+	select CROSS_COMPILE_ARM_NONE_EABI
+	select ARCH_ARM
+	select CORE_CORTEX_M4
+	select USE_FPU
+	help
+	  STM32F429 Cortex-M4 platform with FPU
+
+config PLATFORM_STM32F1
+	bool "STM32F1"
+	select CROSS_COMPILE_ARM_NONE_EABI
+	select ARCH_ARM
+	select CORE_CORTEX_M3
+	help
+	  STM32F1 Cortex-M3 platform
+
+config PLATFORM_ESP32
+	bool "ESP32"
+	select CROSS_COMPILE_XTENSA_ESP32_ELF
+	select ARCH_XTENSA
+	help
+	  ESP32 Xtensa platform
+
+config PLATFORM_STC89
+	bool "STC89 (8051)"
+	select CROSS_COMPILE_SDCC
+	select ARCH_8051
+	help
+	  STC89 8051 platform
+
+endchoice
+
+config PLATFORM
+	string
+	default "stm32f429" if PLATFORM_STM32F429
+	default "stm32f1" if PLATFORM_STM32F1
+	default "esp32" if PLATFORM_ESP32
+	default "stc89" if PLATFORM_STC89
+
+# Architecture configurations
+config ARCH_ARM
+	bool
+config ARCH_XTENSA
+	bool
+config ARCH_8051
+	bool
+
+# Core configurations
+config CORE_CORTEX_M3
+	bool
+config CORE_CORTEX_M4
+	bool
+
+# FPU configuration
+config USE_FPU
+	bool
+
+endmenu
+
+menu "Toolchain Configuration"
+
+choice
+	prompt "Cross Compiler Prefix"
+	default CROSS_COMPILE_ARM_NONE_EABI
+	help
+	  Select the cross compiler toolchain prefix
+
+config CROSS_COMPILE_ARM_NONE_EABI
+	bool "arm-none-eabi-"
+	depends on ARCH_ARM
+
+config CROSS_COMPILE_XTENSA_ESP32_ELF
+	bool "xtensa-esp32-elf-"
+	depends on ARCH_XTENSA
+
+config CROSS_COMPILE_SDCC
+	bool "sdcc-"
+	depends on ARCH_8051
+
+config CROSS_COMPILE_CUSTOM
+	bool "Custom"
+	help
+	  Use custom cross compiler prefix
+
+endchoice
+
+config CROSS_COMPILE_CUSTOM_PREFIX
+	string "Custom Compiler Prefix"
+	depends on CROSS_COMPILE_CUSTOM
+	default "arm-none-eabi-"
+	help
+	  Enter custom cross compiler prefix
+
+config TOOLCHAIN_PATH
+	string "Toolchain Path"
+	help
+	  Optional: Path to the toolchain bin directory
+	  Example: /opt/gcc-arm-none-eabi/bin
+
+endmenu
+
+menu "Driver Selection"
+
+config DRIVER_GPIO
+	bool "GPIO Driver"
+	default y
+	help
+	  Enable GPIO driver support
+
+config DRIVER_LED
+	bool "LED Driver"
+	default y
+	help
+	  Enable LED driver support
+
+config DRIVER_UART
+	bool "UART Driver"
+	help
+	  Enable UART driver support
+
+config DRIVER_I2C
+	bool "I2C Driver"
+	help
+	  Enable I2C driver support
+
+config DRIVER_SPI
+	bool "SPI Driver"
+	help
+	  Enable SPI driver support
+
+endmenu
+
+menu "Build Options"
+
+config DEBUG_BUILD
+	bool "Debug Build"
+	default y
+	help
+	  Enable debug build with optimizations disabled
+
+config OPTIMIZE_SIZE
+	bool "Optimize for Size"
+	depends on !DEBUG_BUILD
+	help
+	  Optimize for minimum code size
+
+config OPTIMIZE_SPEED
+	bool "Optimize for Speed"
+	depends on !DEBUG_BUILD
+	help
+	  Optimize for maximum performance
+
+config USE_HAL_DRIVER
+	bool "Use HAL Driver"
+	depends on ARCH_ARM
+	default y
+	help
+	  Use STM32 HAL driver
+
+config USE_LL_DRIVER
+	bool "Use LL Driver"
+	depends on ARCH_ARM
+	help
+	  Use STM32 LL driver (low-level)
+
+config STD_LIBC
+	string "Standard Library"
+	depends on ARCH_ARM
+	default "nano"
+	help
+	  Standard library implementation
+	  - nano: Newlib nano (smaller)
+	  - standard: Newlib standard
+
+endmenu

@@ -1,0 +1,144 @@
+# Kbuild system for mcu-hub project
+# This file handles parsing of .config and Makefile files with obj-${CONFIG_XXX} syntax
+
+# Check if .config exists (skip for config targets)
+ifneq ($(filter menuconfig defconfig savedefconfig oldconfig olddefconfig help clean,$(MAKECMDGOALS)),)
+ifeq ($(wildcard .config),)
+$(error No .config found. Run 'make menuconfig' first or create a default config)
+endif
+endif
+
+# Include .config file if it exists and not a config target
+ifneq ($(filter menuconfig defconfig savedefconfig oldconfig olddefconfig help clean,$(MAKECMDGOALS)),)
+include .config
+else
+ifneq ($(wildcard .config),)
+include .config
+endif
+endif
+
+# Initialize source and object variables
+SRC_C :=
+SRC_S :=
+SRC_CPP :=
+OBJ :=
+obj-y :=
+obj-n :=
+obj-m :=
+CURRENT_DIR :=
+
+# Function to evaluate CONFIG variables
+# obj-$(CONFIG_FOO) becomes obj-y or obj-n based on CONFIG_FOO value
+# This is handled automatically by Make when we reference the variable
+
+# Top-level build directories
+obj-y += app/
+obj-y += drivers/
+obj-y += platform/
+
+# Process top-level obj-y before including subdirectories
+ifneq ($(obj-y),)
+SRC_C += $(filter %.c,$(obj-y))
+SRC_S += $(filter %.s %.S,$(obj-y))
+SRC_CPP += $(filter %.cpp %.cxx,$(obj-y))
+endif
+
+# Recursive function to process subdirectories with arbitrary depth
+# Arguments: $1 = list of directories to process, $2 = parent directory path
+define process_subdirs
+$(foreach d,$(filter %/,$(1)),\
+	$(eval CURRENT_DIR := $(2)$(d))\
+	$(eval obj-y :=)\
+	$(eval obj-n :=)\
+	$(eval obj-m :=)\
+	$(if $(wildcard $(2)$(d)Makefile),\
+		$(eval include $(2)$(d)Makefile)\
+		$(foreach f,$(filter %.c,$(obj-y)),$(eval SRC_C += $(2)$(d)$(f)))\
+		$(foreach f,$(filter %.s %.S,$(obj-y)),$(eval SRC_S += $(2)$(d)$(f)))\
+		$(foreach f,$(filter %.cpp %.cxx,$(obj-y)),$(eval SRC_CPP += $(2)$(d)$(f)))\
+		$(foreach f,$(filter %.c,$(obj-m)),$(eval SRC_C += $(2)$(d)$(f)))\
+		$(foreach f,$(filter %.s %.S,$(obj-m)),$(eval SRC_S += $(2)$(d)$(f)))\
+		$(foreach f,$(filter %.cpp %.cxx,$(obj-m)),$(eval SRC_CPP += $(2)$(d)$(f)))\
+		$(if $(filter %.c,$(obj-m))$(filter %.s %.S,$(obj-m))$(filter %.cpp %.cxx,$(obj-m)),\
+			$(warning Module building not supported in this simplified Kbuild)\
+		)\
+		$(call process_subdirs,$(filter %/,$(obj-y)),$(2)$(d))\
+		$(call process_subdirs,$(filter %/,$(obj-m)),$(2)$(d))\
+	)\
+)
+endef
+
+# Process subdirectories recursively (start from top-level)
+ifneq ($(obj-y),)
+$(call process_subdirs,$(filter %/,$(obj-y)),)
+endif
+
+ifneq ($(obj-m),)
+$(call process_subdirs,$(filter %/,$(obj-m)),)
+endif
+
+# Build object file list from source files
+OBJ += $(patsubst %.c,$(BUILD_DIR)/%.o,$(SRC_C))
+OBJ += $(patsubst %.s,$(BUILD_DIR)/%.o,$(SRC_S))
+OBJ += $(patsubst %.S,$(BUILD_DIR)/%.o,$(SRC_S))
+OBJ += $(patsubst %.cpp,$(BUILD_DIR)/%.o,$(SRC_CPP))
+OBJ += $(patsubst %.cxx,$(BUILD_DIR)/%.o,$(SRC_CPP))
+
+# Special handling for startup file (has C-style comments that need preprocessing)
+ifneq ($(CONFIG_PLATFORM_STM32F429),)
+OBJ += $(BUILD_DIR)/platform/stm32f429/startup_stm32f429xx.o
+endif
+
+# Compile C files
+$(BUILD_DIR)/%.o: %.c
+	@mkdir -p $(dir $@)
+	@echo "  CC      $<"
+	@$(CC) $(CFLAGS) $(DEFS) $(INCLUDES) -c $< -o $@
+
+# Compile ASM files (.s - not preprocessed)
+$(BUILD_DIR)/%.o: %.s
+	@mkdir -p $(dir $@)
+	@echo "  AS      $<"
+	@$(AS) $(ASFLAGS) $(DEFS) $(INCLUDES) -c $< -o $@
+
+# Special rule for startup file with C-style comments (needs preprocessing)
+$(BUILD_DIR)/platform/stm32f429/startup_stm32f429xx.o: platform/stm32f429/startup_stm32f429xx.s
+	@mkdir -p $(dir $@)
+	@echo "  AS      $<"
+	@$(CC) $(ASFLAGS) $(DEFS) $(INCLUDES) -x assembler-with-cpp -c $< -o $@
+
+# Compile ASM files (.S - preprocessed)
+$(BUILD_DIR)/%.o: %.S
+	@mkdir -p $(dir $@)
+	@echo "  AS      $<"
+	@$(CC) $(ASFLAGS) $(DEFS) $(INCLUDES) -x assembler-with-cpp -c $< -o $@
+
+# Compile C++ files
+$(BUILD_DIR)/%.o: %.cpp
+	@mkdir -p $(dir $@)
+	@echo "  CXX     $<"
+	@$(CXX) $(CXXFLAGS) $(DEFS) $(INCLUDES) -c $< -o $@
+
+$(BUILD_DIR)/%.o: %.cxx
+	@mkdir -p $(dir $@)
+	@echo "  CXX     $<"
+	@$(CXX) $(CXXFLAGS) $(DEFS) $(INCLUDES) -c $< -o $@
+
+# Link executable
+$(BUILD_DIR)/$(PROJECT).elf: $(OBJ)
+	@mkdir -p $(dir $@)
+	@echo "  LD      $@"
+	@$(CC) $(LDFLAGS) $(OBJ) -o $@ -lm
+
+# Generate HEX file
+$(BUILD_DIR)/$(PROJECT).hex: $(BUILD_DIR)/$(PROJECT).elf
+	@echo "  HEX     $@"
+	@$(CP) -O ihex $< $@
+
+# Generate BIN file
+$(BUILD_DIR)/$(PROJECT).bin: $(BUILD_DIR)/$(PROJECT).elf
+	@echo "  BIN     $@"
+	@$(CP) -O binary $< $@
+
+# Include dependency files
+-include $(OBJ:.o=.d)

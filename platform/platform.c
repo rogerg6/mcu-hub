@@ -1,4 +1,5 @@
 #include "platform.h"
+#include "mcu.h"
 
 static void stm32f429_init(void) {
     HAL_Init();

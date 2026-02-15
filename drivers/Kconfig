@@ -1,0 +1,16 @@
+# Kconfig for drivers directory
+# Driver-specific configuration options
+
+config DRIVER_GPIO_PLATFORM
+	string
+	default "stm32f429" if PLATFORM_STM32F429
+	default "stm32f1" if PLATFORM_STM32F1
+	default "esp32" if PLATFORM_ESP32
+	default "stc89" if PLATFORM_STC89
+
+config DRIVER_LED_PLATFORM
+	string
+	default "stm32f429" if PLATFORM_STM32F429
+	default "stm32f1" if PLATFORM_STM32F1
+	default "esp32" if PLATFORM_ESP32
+	default "stc89" if PLATFORM_STC89

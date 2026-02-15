@@ -1,2 +1,23 @@
+# Build directory
 build/
+
+# Configuration
+.config
+.config.old
+
+# Cache
 .cache
+
+# Kconfig build products
+scripts/kconfig/mconf
+scripts/kconfig/conf
+scripts/kconfig/*.o
+scripts/kconfig/lxdialog/*.o
+scripts/kconfig/.fuse_hidden*
+scripts/kconfig/parser.tab.c
+scripts/kconfig/parser.tab.h
+scripts/kconfig/lexer.lex.c
+
+# Auto-generated config files (not used in this project)
+include/config/
+include/generated/

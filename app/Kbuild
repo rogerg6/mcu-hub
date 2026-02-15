@@ -1,0 +1,4 @@
+# Kbuild file for app directory
+
+# C source files
+SRC_C += app/main.c

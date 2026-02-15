@@ -1,0 +1,30 @@
+# Kbuild file for platform directory
+
+# C source files - platform code
+SRC_C += platform/platform.c
+
+# C source files - STM32F429 specific
+SRC_C += platform/stm32f429/mcu.c
+SRC_C += platform/stm32f429/stm32f4xx_it.c
+SRC_C += platform/stm32f429/stm32f4xx_hal_msp.c
+SRC_C += platform/stm32f429/sysmem.c
+SRC_C += platform/stm32f429/syscalls.c
+SRC_C += platform/stm32f429/system_stm32f4xx.c
+
+# ASM source files
+# Note: startup_stm32f429xx.s is handled separately in Kbuild.include due to C-style comments
+
+# C source files - STM32 HAL drivers
+SRC_C += platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c
+SRC_C += platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c
+SRC_C += platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c
+SRC_C += platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c
+SRC_C += platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c
+SRC_C += platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c
+SRC_C += platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c
+SRC_C += platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c
+SRC_C += platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c
+SRC_C += platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c
+SRC_C += platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c
+SRC_C += platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c
+SRC_C += platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c

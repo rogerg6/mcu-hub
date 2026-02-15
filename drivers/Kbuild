@@ -1,0 +1,5 @@
+# Kbuild file for drivers directory
+
+# C source files
+SRC_C += drivers/gpio/gpio_stm32f429.c
+SRC_C += drivers/led/led.c

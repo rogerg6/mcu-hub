@@ -1,0 +1,146 @@
+[
+{
+  "directory": "D:/001_ccccccode/mcu-hub/build",
+  "command": "C:/Users/roger/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc.exe -DDEBUG -DSTM32F429xx -DUSE_HAL_DRIVER -ID:/001_ccccccode/mcu-hub/platform -ID:/001_ccccccode/mcu-hub/platform/stm32f429 -ID:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Inc -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Device/ST/STM32F4xx/Include -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Include -ID:/001_ccccccode/mcu-hub/drivers/common -ID:/001_ccccccode/mcu-hub/drivers/gpio -ID:/001_ccccccode/mcu-hub/drivers/led -ID:/001_ccccccode/mcu-hub/app  -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -O0 -g3 -std=gnu11 -o CMakeFiles/mcuhub.dir/platform/platform.c.obj -c D:/001_ccccccode/mcu-hub/platform/platform.c",
+  "file": "D:/001_ccccccode/mcu-hub/platform/platform.c",
+  "output": "CMakeFiles/mcuhub.dir/platform/platform.c.obj"
+},
+{
+  "directory": "D:/001_ccccccode/mcu-hub/build",
+  "command": "C:/Users/roger/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc.exe -DDEBUG -DSTM32F429xx -DUSE_HAL_DRIVER -ID:/001_ccccccode/mcu-hub/platform -ID:/001_ccccccode/mcu-hub/platform/stm32f429 -ID:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Inc -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Device/ST/STM32F4xx/Include -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Include -ID:/001_ccccccode/mcu-hub/drivers/common -ID:/001_ccccccode/mcu-hub/drivers/gpio -ID:/001_ccccccode/mcu-hub/drivers/led -ID:/001_ccccccode/mcu-hub/app  -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -O0 -g3 -std=gnu11 -o CMakeFiles/mcuhub.dir/platform/stm32f429/mcu.c.obj -c D:/001_ccccccode/mcu-hub/platform/stm32f429/mcu.c",
+  "file": "D:/001_ccccccode/mcu-hub/platform/stm32f429/mcu.c",
+  "output": "CMakeFiles/mcuhub.dir/platform/stm32f429/mcu.c.obj"
+},
+{
+  "directory": "D:/001_ccccccode/mcu-hub/build",
+  "command": "C:/Users/roger/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc.exe -DDEBUG -DSTM32F429xx -DUSE_HAL_DRIVER -ID:/001_ccccccode/mcu-hub/platform -ID:/001_ccccccode/mcu-hub/platform/stm32f429 -ID:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Inc -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Device/ST/STM32F4xx/Include -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Include -ID:/001_ccccccode/mcu-hub/drivers/common -ID:/001_ccccccode/mcu-hub/drivers/gpio -ID:/001_ccccccode/mcu-hub/drivers/led -ID:/001_ccccccode/mcu-hub/app  -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -O0 -g3 -std=gnu11 -o CMakeFiles/mcuhub.dir/platform/stm32f429/stm32f4xx_it.c.obj -c D:/001_ccccccode/mcu-hub/platform/stm32f429/stm32f4xx_it.c",
+  "file": "D:/001_ccccccode/mcu-hub/platform/stm32f429/stm32f4xx_it.c",
+  "output": "CMakeFiles/mcuhub.dir/platform/stm32f429/stm32f4xx_it.c.obj"
+},
+{
+  "directory": "D:/001_ccccccode/mcu-hub/build",
+  "command": "C:/Users/roger/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc.exe -DDEBUG -DSTM32F429xx -DUSE_HAL_DRIVER -ID:/001_ccccccode/mcu-hub/platform -ID:/001_ccccccode/mcu-hub/platform/stm32f429 -ID:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Inc -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Device/ST/STM32F4xx/Include -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Include -ID:/001_ccccccode/mcu-hub/drivers/common -ID:/001_ccccccode/mcu-hub/drivers/gpio -ID:/001_ccccccode/mcu-hub/drivers/led -ID:/001_ccccccode/mcu-hub/app  -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -O0 -g3 -std=gnu11 -o CMakeFiles/mcuhub.dir/platform/stm32f429/stm32f4xx_hal_msp.c.obj -c D:/001_ccccccode/mcu-hub/platform/stm32f429/stm32f4xx_hal_msp.c",
+  "file": "D:/001_ccccccode/mcu-hub/platform/stm32f429/stm32f4xx_hal_msp.c",
+  "output": "CMakeFiles/mcuhub.dir/platform/stm32f429/stm32f4xx_hal_msp.c.obj"
+},
+{
+  "directory": "D:/001_ccccccode/mcu-hub/build",
+  "command": "C:/Users/roger/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc.exe -DDEBUG -DSTM32F429xx -DUSE_HAL_DRIVER -ID:/001_ccccccode/mcu-hub/platform -ID:/001_ccccccode/mcu-hub/platform/stm32f429 -ID:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Inc -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Device/ST/STM32F4xx/Include -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Include -ID:/001_ccccccode/mcu-hub/drivers/common -ID:/001_ccccccode/mcu-hub/drivers/gpio -ID:/001_ccccccode/mcu-hub/drivers/led -ID:/001_ccccccode/mcu-hub/app  -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -O0 -g3 -std=gnu11 -o CMakeFiles/mcuhub.dir/platform/stm32f429/sysmem.c.obj -c D:/001_ccccccode/mcu-hub/platform/stm32f429/sysmem.c",
+  "file": "D:/001_ccccccode/mcu-hub/platform/stm32f429/sysmem.c",
+  "output": "CMakeFiles/mcuhub.dir/platform/stm32f429/sysmem.c.obj"
+},
+{
+  "directory": "D:/001_ccccccode/mcu-hub/build",
+  "command": "C:/Users/roger/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc.exe -DDEBUG -DSTM32F429xx -DUSE_HAL_DRIVER -ID:/001_ccccccode/mcu-hub/platform -ID:/001_ccccccode/mcu-hub/platform/stm32f429 -ID:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Inc -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Device/ST/STM32F4xx/Include -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Include -ID:/001_ccccccode/mcu-hub/drivers/common -ID:/001_ccccccode/mcu-hub/drivers/gpio -ID:/001_ccccccode/mcu-hub/drivers/led -ID:/001_ccccccode/mcu-hub/app  -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -O0 -g3 -std=gnu11 -o CMakeFiles/mcuhub.dir/platform/stm32f429/syscalls.c.obj -c D:/001_ccccccode/mcu-hub/platform/stm32f429/syscalls.c",
+  "file": "D:/001_ccccccode/mcu-hub/platform/stm32f429/syscalls.c",
+  "output": "CMakeFiles/mcuhub.dir/platform/stm32f429/syscalls.c.obj"
+},
+{
+  "directory": "D:/001_ccccccode/mcu-hub/build",
+  "command": "C:/Users/roger/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc.exe -DDEBUG -DSTM32F429xx -DUSE_HAL_DRIVER -ID:/001_ccccccode/mcu-hub/platform -ID:/001_ccccccode/mcu-hub/platform/stm32f429 -ID:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Inc -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Device/ST/STM32F4xx/Include -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Include -ID:/001_ccccccode/mcu-hub/drivers/common -ID:/001_ccccccode/mcu-hub/drivers/gpio -ID:/001_ccccccode/mcu-hub/drivers/led -ID:/001_ccccccode/mcu-hub/app  -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -O0 -g3 -std=gnu11 -o CMakeFiles/mcuhub.dir/platform/stm32f429/system_stm32f4xx.c.obj -c D:/001_ccccccode/mcu-hub/platform/stm32f429/system_stm32f4xx.c",
+  "file": "D:/001_ccccccode/mcu-hub/platform/stm32f429/system_stm32f4xx.c",
+  "output": "CMakeFiles/mcuhub.dir/platform/stm32f429/system_stm32f4xx.c.obj"
+},
+{
+  "directory": "D:/001_ccccccode/mcu-hub/build",
+  "command": "C:/Users/roger/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc.exe -DDEBUG -DSTM32F429xx -DUSE_HAL_DRIVER -ID:/001_ccccccode/mcu-hub/platform -ID:/001_ccccccode/mcu-hub/platform/stm32f429 -ID:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Inc -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Device/ST/STM32F4xx/Include -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Include -ID:/001_ccccccode/mcu-hub/drivers/common -ID:/001_ccccccode/mcu-hub/drivers/gpio -ID:/001_ccccccode/mcu-hub/drivers/led -ID:/001_ccccccode/mcu-hub/app  -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -x assembler-with-cpp -MMD -MP -g -o CMakeFiles/mcuhub.dir/platform/stm32f429/startup_stm32f429xx.s.obj -c D:/001_ccccccode/mcu-hub/platform/stm32f429/startup_stm32f429xx.s",
+  "file": "D:/001_ccccccode/mcu-hub/platform/stm32f429/startup_stm32f429xx.s",
+  "output": "CMakeFiles/mcuhub.dir/platform/stm32f429/startup_stm32f429xx.s.obj"
+},
+{
+  "directory": "D:/001_ccccccode/mcu-hub/build/app",
+  "command": "C:/Users/roger/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc.exe -DDEBUG -DSTM32F429xx -DUSE_HAL_DRIVER -ID:/001_ccccccode/mcu-hub/app -ID:/001_ccccccode/mcu-hub/platform -ID:/001_ccccccode/mcu-hub/drivers/led -ID:/001_ccccccode/mcu-hub/drivers/common -ID:/001_ccccccode/mcu-hub/drivers/gpio -ID:/001_ccccccode/mcu-hub/platform/stm32f429 -ID:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Inc -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Device/ST/STM32F4xx/Include -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Include  -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -O0 -g3 -std=gnu11 -o CMakeFiles/app.dir/main.c.obj -c D:/001_ccccccode/mcu-hub/app/main.c",
+  "file": "D:/001_ccccccode/mcu-hub/app/main.c",
+  "output": "app/CMakeFiles/app.dir/main.c.obj"
+},
+{
+  "directory": "D:/001_ccccccode/mcu-hub/build/drivers",
+  "command": "C:/Users/roger/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc.exe -DDEBUG -DSTM32F429xx -DUSE_HAL_DRIVER -ID:/001_ccccccode/mcu-hub/drivers/common -ID:/001_ccccccode/mcu-hub/drivers/gpio -ID:/001_ccccccode/mcu-hub/drivers/led -ID:/001_ccccccode/mcu-hub/platform -ID:/001_ccccccode/mcu-hub/platform/stm32f429 -ID:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Inc -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Device/ST/STM32F4xx/Include -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Include  -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -O0 -g3 -std=gnu11 -o CMakeFiles/drivers.dir/gpio/gpio_stm32f429.c.obj -c D:/001_ccccccode/mcu-hub/drivers/gpio/gpio_stm32f429.c",
+  "file": "D:/001_ccccccode/mcu-hub/drivers/gpio/gpio_stm32f429.c",
+  "output": "drivers/CMakeFiles/drivers.dir/gpio/gpio_stm32f429.c.obj"
+},
+{
+  "directory": "D:/001_ccccccode/mcu-hub/build/drivers",
+  "command": "C:/Users/roger/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc.exe -DDEBUG -DSTM32F429xx -DUSE_HAL_DRIVER -ID:/001_ccccccode/mcu-hub/drivers/common -ID:/001_ccccccode/mcu-hub/drivers/gpio -ID:/001_ccccccode/mcu-hub/drivers/led -ID:/001_ccccccode/mcu-hub/platform -ID:/001_ccccccode/mcu-hub/platform/stm32f429 -ID:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Inc -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Device/ST/STM32F4xx/Include -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Include  -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -O0 -g3 -std=gnu11 -o CMakeFiles/drivers.dir/led/led.c.obj -c D:/001_ccccccode/mcu-hub/drivers/led/led.c",
+  "file": "D:/001_ccccccode/mcu-hub/drivers/led/led.c",
+  "output": "drivers/CMakeFiles/drivers.dir/led/led.c.obj"
+},
+{
+  "directory": "D:/001_ccccccode/mcu-hub/build/platform",
+  "command": "C:/Users/roger/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc.exe -DDEBUG -DSTM32F429xx -DUSE_HAL_DRIVER -ID:/001_ccccccode/mcu-hub/platform -ID:/001_ccccccode/mcu-hub/platform/stm32f429 -ID:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Inc -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Device/ST/STM32F4xx/Include -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Include -ID:/001_ccccccode/mcu-hub/drivers/led -ID:/001_ccccccode/mcu-hub/drivers/common -ID:/001_ccccccode/mcu-hub/drivers/gpio  -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -O0 -g3 -std=gnu11 -o CMakeFiles/STM32_Drivers.dir/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c.obj -c D:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c",
+  "file": "D:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c",
+  "output": "platform/CMakeFiles/STM32_Drivers.dir/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c.obj"
+},
+{
+  "directory": "D:/001_ccccccode/mcu-hub/build/platform",
+  "command": "C:/Users/roger/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc.exe -DDEBUG -DSTM32F429xx -DUSE_HAL_DRIVER -ID:/001_ccccccode/mcu-hub/platform -ID:/001_ccccccode/mcu-hub/platform/stm32f429 -ID:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Inc -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Device/ST/STM32F4xx/Include -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Include -ID:/001_ccccccode/mcu-hub/drivers/led -ID:/001_ccccccode/mcu-hub/drivers/common -ID:/001_ccccccode/mcu-hub/drivers/gpio  -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -O0 -g3 -std=gnu11 -o CMakeFiles/STM32_Drivers.dir/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c.obj -c D:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c",
+  "file": "D:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c",
+  "output": "platform/CMakeFiles/STM32_Drivers.dir/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c.obj"
+},
+{
+  "directory": "D:/001_ccccccode/mcu-hub/build/platform",
+  "command": "C:/Users/roger/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc.exe -DDEBUG -DSTM32F429xx -DUSE_HAL_DRIVER -ID:/001_ccccccode/mcu-hub/platform -ID:/001_ccccccode/mcu-hub/platform/stm32f429 -ID:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Inc -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Device/ST/STM32F4xx/Include -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Include -ID:/001_ccccccode/mcu-hub/drivers/led -ID:/001_ccccccode/mcu-hub/drivers/common -ID:/001_ccccccode/mcu-hub/drivers/gpio  -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -O0 -g3 -std=gnu11 -o CMakeFiles/STM32_Drivers.dir/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c.obj -c D:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c",
+  "file": "D:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c",
+  "output": "platform/CMakeFiles/STM32_Drivers.dir/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c.obj"
+},
+{
+  "directory": "D:/001_ccccccode/mcu-hub/build/platform",
+  "command": "C:/Users/roger/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc.exe -DDEBUG -DSTM32F429xx -DUSE_HAL_DRIVER -ID:/001_ccccccode/mcu-hub/platform -ID:/001_ccccccode/mcu-hub/platform/stm32f429 -ID:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Inc -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Device/ST/STM32F4xx/Include -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Include -ID:/001_ccccccode/mcu-hub/drivers/led -ID:/001_ccccccode/mcu-hub/drivers/common -ID:/001_ccccccode/mcu-hub/drivers/gpio  -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -O0 -g3 -std=gnu11 -o CMakeFiles/STM32_Drivers.dir/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c.obj -c D:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c",
+  "file": "D:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c",
+  "output": "platform/CMakeFiles/STM32_Drivers.dir/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c.obj"
+},
+{
+  "directory": "D:/001_ccccccode/mcu-hub/build/platform",
+  "command": "C:/Users/roger/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc.exe -DDEBUG -DSTM32F429xx -DUSE_HAL_DRIVER -ID:/001_ccccccode/mcu-hub/platform -ID:/001_ccccccode/mcu-hub/platform/stm32f429 -ID:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Inc -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Device/ST/STM32F4xx/Include -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Include -ID:/001_ccccccode/mcu-hub/drivers/led -ID:/001_ccccccode/mcu-hub/drivers/common -ID:/001_ccccccode/mcu-hub/drivers/gpio  -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -O0 -g3 -std=gnu11 -o CMakeFiles/STM32_Drivers.dir/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c.obj -c D:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c",
+  "file": "D:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c",
+  "output": "platform/CMakeFiles/STM32_Drivers.dir/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c.obj"
+},
+{
+  "directory": "D:/001_ccccccode/mcu-hub/build/platform",
+  "command": "C:/Users/roger/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc.exe -DDEBUG -DSTM32F429xx -DUSE_HAL_DRIVER -ID:/001_ccccccode/mcu-hub/platform -ID:/001_ccccccode/mcu-hub/platform/stm32f429 -ID:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Inc -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Device/ST/STM32F4xx/Include -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Include -ID:/001_ccccccode/mcu-hub/drivers/led -ID:/001_ccccccode/mcu-hub/drivers/common -ID:/001_ccccccode/mcu-hub/drivers/gpio  -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -O0 -g3 -std=gnu11 -o CMakeFiles/STM32_Drivers.dir/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c.obj -c D:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c",
+  "file": "D:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c",
+  "output": "platform/CMakeFiles/STM32_Drivers.dir/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c.obj"
+},
+{
+  "directory": "D:/001_ccccccode/mcu-hub/build/platform",
+  "command": "C:/Users/roger/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc.exe -DDEBUG -DSTM32F429xx -DUSE_HAL_DRIVER -ID:/001_ccccccode/mcu-hub/platform -ID:/001_ccccccode/mcu-hub/platform/stm32f429 -ID:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Inc -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Device/ST/STM32F4xx/Include -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Include -ID:/001_ccccccode/mcu-hub/drivers/led -ID:/001_ccccccode/mcu-hub/drivers/common -ID:/001_ccccccode/mcu-hub/drivers/gpio  -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -O0 -g3 -std=gnu11 -o CMakeFiles/STM32_Drivers.dir/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c.obj -c D:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c",
+  "file": "D:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c",
+  "output": "platform/CMakeFiles/STM32_Drivers.dir/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c.obj"
+},
+{
+  "directory": "D:/001_ccccccode/mcu-hub/build/platform",
+  "command": "C:/Users/roger/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc.exe -DDEBUG -DSTM32F429xx -DUSE_HAL_DRIVER -ID:/001_ccccccode/mcu-hub/platform -ID:/001_ccccccode/mcu-hub/platform/stm32f429 -ID:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Inc -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Device/ST/STM32F4xx/Include -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Include -ID:/001_ccccccode/mcu-hub/drivers/led -ID:/001_ccccccode/mcu-hub/drivers/common -ID:/001_ccccccode/mcu-hub/drivers/gpio  -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -O0 -g3 -std=gnu11 -o CMakeFiles/STM32_Drivers.dir/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c.obj -c D:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c",
+  "file": "D:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c",
+  "output": "platform/CMakeFiles/STM32_Drivers.dir/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c.obj"
+},
+{
+  "directory": "D:/001_ccccccode/mcu-hub/build/platform",
+  "command": "C:/Users/roger/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc.exe -DDEBUG -DSTM32F429xx -DUSE_HAL_DRIVER -ID:/001_ccccccode/mcu-hub/platform -ID:/001_ccccccode/mcu-hub/platform/stm32f429 -ID:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Inc -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Device/ST/STM32F4xx/Include -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Include -ID:/001_ccccccode/mcu-hub/drivers/led -ID:/001_ccccccode/mcu-hub/drivers/common -ID:/001_ccccccode/mcu-hub/drivers/gpio  -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -O0 -g3 -std=gnu11 -o CMakeFiles/STM32_Drivers.dir/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c.obj -c D:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c",
+  "file": "D:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c",
+  "output": "platform/CMakeFiles/STM32_Drivers.dir/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c.obj"
+},
+{
+  "directory": "D:/001_ccccccode/mcu-hub/build/platform",
+  "command": "C:/Users/roger/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc.exe -DDEBUG -DSTM32F429xx -DUSE_HAL_DRIVER -ID:/001_ccccccode/mcu-hub/platform -ID:/001_ccccccode/mcu-hub/platform/stm32f429 -ID:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Inc -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Device/ST/STM32F4xx/Include -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Include -ID:/001_ccccccode/mcu-hub/drivers/led -ID:/001_ccccccode/mcu-hub/drivers/common -ID:/001_ccccccode/mcu-hub/drivers/gpio  -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -O0 -g3 -std=gnu11 -o CMakeFiles/STM32_Drivers.dir/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c.obj -c D:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c",
+  "file": "D:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c",
+  "output": "platform/CMakeFiles/STM32_Drivers.dir/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c.obj"
+},
+{
+  "directory": "D:/001_ccccccode/mcu-hub/build/platform",
+  "command": "C:/Users/roger/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc.exe -DDEBUG -DSTM32F429xx -DUSE_HAL_DRIVER -ID:/001_ccccccode/mcu-hub/platform -ID:/001_ccccccode/mcu-hub/platform/stm32f429 -ID:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Inc -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Device/ST/STM32F4xx/Include -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Include -ID:/001_ccccccode/mcu-hub/drivers/led -ID:/001_ccccccode/mcu-hub/drivers/common -ID:/001_ccccccode/mcu-hub/drivers/gpio  -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -O0 -g3 -std=gnu11 -o CMakeFiles/STM32_Drivers.dir/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c.obj -c D:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c",
+  "file": "D:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c",
+  "output": "platform/CMakeFiles/STM32_Drivers.dir/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c.obj"
+},
+{
+  "directory": "D:/001_ccccccode/mcu-hub/build/platform",
+  "command": "C:/Users/roger/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc.exe -DDEBUG -DSTM32F429xx -DUSE_HAL_DRIVER -ID:/001_ccccccode/mcu-hub/platform -ID:/001_ccccccode/mcu-hub/platform/stm32f429 -ID:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Inc -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Device/ST/STM32F4xx/Include -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Include -ID:/001_ccccccode/mcu-hub/drivers/led -ID:/001_ccccccode/mcu-hub/drivers/common -ID:/001_ccccccode/mcu-hub/drivers/gpio  -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -O0 -g3 -std=gnu11 -o CMakeFiles/STM32_Drivers.dir/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.obj -c D:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c",
+  "file": "D:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c",
+  "output": "platform/CMakeFiles/STM32_Drivers.dir/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.obj"
+},
+{
+  "directory": "D:/001_ccccccode/mcu-hub/build/platform",
+  "command": "C:/Users/roger/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc.exe -DDEBUG -DSTM32F429xx -DUSE_HAL_DRIVER -ID:/001_ccccccode/mcu-hub/platform -ID:/001_ccccccode/mcu-hub/platform/stm32f429 -ID:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Inc -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Device/ST/STM32F4xx/Include -ID:/001_ccccccode/mcu-hub/platform/stm32f429/CMSIS/Include -ID:/001_ccccccode/mcu-hub/drivers/led -ID:/001_ccccccode/mcu-hub/drivers/common -ID:/001_ccccccode/mcu-hub/drivers/gpio  -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -Wall -fdata-sections -ffunction-sections -O0 -g3 -std=gnu11 -o CMakeFiles/STM32_Drivers.dir/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c.obj -c D:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c",
+  "file": "D:/001_ccccccode/mcu-hub/platform/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c",
+  "output": "platform/CMakeFiles/STM32_Drivers.dir/stm32f429/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c.obj"
+}
+]

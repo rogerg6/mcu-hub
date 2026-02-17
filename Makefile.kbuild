@@ -32,7 +32,7 @@ CURRENT_DIR :=
 # This is handled automatically by Make when we reference the variable
 
 # Top-level build directories
-obj-y += app/
+obj-y += boards/
 obj-y += drivers/
 obj-y += platform/
 

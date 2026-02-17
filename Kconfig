@@ -3,74 +3,11 @@
 
 mainmenu "mcu-hub Configuration"
 
-menu "Platform Selection"
+source "boards/Kconfig"
+source "platform/Kconfig"
+source "drivers/Kconfig"
 
-choice
-	prompt "Select Platform"
-	default PLATFORM_STM32F429
-	help
-	  Select the target platform for mcu-hub
-
-config PLATFORM_STM32F429
-	bool "STM32F429"
-	select USE_HAL_DRIVER
-	select CROSS_COMPILE_ARM_NONE_EABI
-	select ARCH_ARM
-	select CORE_CORTEX_M4
-	select USE_FPU
-	help
-	  STM32F429 Cortex-M4 platform with FPU
-
-config PLATFORM_STM32F1
-	bool "STM32F1"
-	select CROSS_COMPILE_ARM_NONE_EABI
-	select ARCH_ARM
-	select CORE_CORTEX_M3
-	help
-	  STM32F1 Cortex-M3 platform
-
-config PLATFORM_ESP32
-	bool "ESP32"
-	select CROSS_COMPILE_XTENSA_ESP32_ELF
-	select ARCH_XTENSA
-	help
-	  ESP32 Xtensa platform
-
-config PLATFORM_STC89
-	bool "STC89 (8051)"
-	select CROSS_COMPILE_SDCC
-	select ARCH_8051
-	help
-	  STC89 8051 platform
-
-endchoice
-
-config PLATFORM
-	string
-	default "stm32f429" if PLATFORM_STM32F429
-	default "stm32f1" if PLATFORM_STM32F1
-	default "esp32" if PLATFORM_ESP32
-	default "stc89" if PLATFORM_STC89
-
-# Architecture configurations
-config ARCH_ARM
-	bool
-config ARCH_XTENSA
-	bool
-config ARCH_8051
-	bool
-
-# Core configurations
-config CORE_CORTEX_M3
-	bool
-config CORE_CORTEX_M4
-	bool
-
-# FPU configuration
-config USE_FPU
-	bool
-
-endmenu
+menu "Build Options"
 
 menu "Toolchain Configuration"
 
@@ -113,39 +50,6 @@ config TOOLCHAIN_PATH
 	  Example: /opt/gcc-arm-none-eabi/bin
 
 endmenu
-
-menu "Driver Selection"
-
-config DRIVER_GPIO
-	bool "GPIO Driver"
-	default y
-	help
-	  Enable GPIO driver support
-
-config DRIVER_LED
-	bool "LED Driver"
-	default y
-	help
-	  Enable LED driver support
-
-config DRIVER_UART
-	bool "UART Driver"
-	help
-	  Enable UART driver support
-
-config DRIVER_I2C
-	bool "I2C Driver"
-	help
-	  Enable I2C driver support
-
-config DRIVER_SPI
-	bool "SPI Driver"
-	help
-	  Enable SPI driver support
-
-endmenu
-
-menu "Build Options"
 
 config DEBUG_BUILD
 	bool "Debug Build"

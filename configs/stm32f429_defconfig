@@ -1,11 +1,38 @@
+#
+# Automatically generated file; DO NOT EDIT.
+# mcu-hub Configuration
+#
+CONFIG_BOARD_FIRE_F429_ZHIZUN=y
 CONFIG_PLATFORM_STM32F429=y
 CONFIG_PLATFORM="stm32f429"
 CONFIG_ARCH_ARM=y
 CONFIG_CORE_CORTEX_M4=y
 CONFIG_USE_FPU=y
-CONFIG_CROSS_COMPILE_ARM_NONE_EABI=y
+
+#
+# Driver Selection
+#
 CONFIG_DRIVER_GPIO=y
 CONFIG_DRIVER_LED=y
+# CONFIG_DRIVER_UART is not set
+# CONFIG_DRIVER_I2C is not set
+# CONFIG_DRIVER_SPI is not set
+# end of Driver Selection
+
+#
+# Build Options
+#
+
+#
+# Toolchain Configuration
+#
+CONFIG_CROSS_COMPILE_ARM_NONE_EABI=y
+# CONFIG_CROSS_COMPILE_CUSTOM is not set
+CONFIG_TOOLCHAIN_PATH=""
+# end of Toolchain Configuration
+
 CONFIG_DEBUG_BUILD=y
 CONFIG_USE_HAL_DRIVER=y
+# CONFIG_USE_LL_DRIVER is not set
 CONFIG_STD_LIBC="nano"
+# end of Build Options

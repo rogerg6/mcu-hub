@@ -1,0 +1,20 @@
+# boards Selection
+
+#menu "Board Selection"
+
+choice
+	prompt "Select Board"
+	default BOARD_FIRE_F429_ZHIZUN
+	help
+	  Select the target platform for mcu-hub
+
+config BOARD_FIRE_F429_ZHIZUN
+	bool "Fire F429 ZHIZUN Edition"
+	select PLATFORM_STM32F429
+	help
+	  FireFly F429 zhizhun board
+
+endchoice
+
+#endmenu
+

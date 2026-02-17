@@ -1,60 +1,53 @@
 # Kconfig for platform directory
 # Platform-specific configuration options
 
-if PLATFORM_STM32F429
+# Platform configurations (automatically selected by board)
+config PLATFORM_STM32F429
+	bool
+	select USE_HAL_DRIVER
+	select CROSS_COMPILE_ARM_NONE_EABI
+	select ARCH_ARM
+	select CORE_CORTEX_M4
+	select USE_FPU
 
-config STM32F429_CHIP
-	string "STM32F429 Chip Variant"
-	default "STM32F429IG"
-	help
-	  Specific STM32F429 chip variant
-	  Options: STM32F429IG, STM32F429VG, STM32F429ZG, etc.
-endif
+config PLATFORM_STM32F1
+	bool
+	select CROSS_COMPILE_ARM_NONE_EABI
+	select ARCH_ARM
+	select CORE_CORTEX_M3
 
-if PLATFORM_STM32F1
+config PLATFORM_ESP32
+	bool
+	select CROSS_COMPILE_XTENSA_ESP32_ELF
+	select ARCH_XTENSA
 
-config STM32F1_CHIP
-	string "STM32F1 Chip Variant"
-	default "STM32F103ZG"
-	help
-	  Specific STM32F1 chip variant
+config PLATFORM_STC89
+	bool
+	select CROSS_COMPILE_SDCC
+	select ARCH_8051
 
-config STM32F1_CLOCK
-	int "System Clock (MHz)"
-	default 72
-	help
-	  System clock frequency in MHz
+config PLATFORM
+	string
+	default "stm32f429" if BOARD_FIRE_F429_ZHIZUN
+	default "stm32f1" if PLATFORM_STM32F1
+	default "esp32" if PLATFORM_ESP32
+	default "stc89" if PLATFORM_STC89
 
-endif
+# Architecture configurations
+config ARCH_ARM
+	bool
+config ARCH_XTENSA
+	bool
+config ARCH_8051
+	bool
 
-if PLATFORM_ESP32
+# Core configurations
+config CORE_CORTEX_M3
+	bool
+config CORE_CORTEX_M4
+	bool
 
-config ESP32_CHIP
-	string "ESP32 Chip Variant"
-	default "ESP32-WROOM-32"
-	help
-	  Specific ESP32 chip variant
+# FPU configuration
+config USE_FPU
+	bool
 
-config ESP32_CPU_FREQ
-	int "CPU Frequency (MHz)"
-	default 240
-	help
-	  CPU frequency in MHz
-
-endif
-
-if PLATFORM_STC89
-
-config STC89_CHIP
-	string "STC89 Chip Variant"
-	default "STC89C52RC"
-	help
-	  Specific STC89 chip variant
-
-config STC89_CLOCK
-	int "Crystal Frequency (MHz)"
-	default 11.0592
-	help
-	  Crystal frequency in MHz
-
-endif

@@ -13,8 +13,8 @@ int device_register(dev_t *dev) {
     if (!dev)
         return ERR;
 
-    g_devices = dev;
     dev->next = g_devices;
+    g_devices = dev;
 
     return OK;
 }

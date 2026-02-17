@@ -1,11 +1,14 @@
-#include "main.h"
+#include "modules.h"
 #include "platform.h"
 #include "led.h"
-#include "gpio.h"
+#include "device.h"
 
 
 void run_app(void) {
-  led_dev_t *led = led_init("led1", GPIO_PH(10), false);
+  led_dev_t *led = (led_dev_t *)get_device_by_name("led1");
+  if (!led)
+    Error_Handler();
+
   led_on(led);
 
   while (1) {
@@ -17,5 +20,6 @@ void run_app(void) {
 int main(void)
 {
   mcu_core_init();
+  modules_init();
   run_app();
-}
+}// test

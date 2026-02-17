@@ -1,22 +1,18 @@
 #include "led.h"
 #include "gpio.h"
-#include <string.h>
-#include <assert.h>
+#include "device.h"
 
-led_dev_t led1;
-
-led_dev_t* led_init(const char *name, uint16_t pin, bool active_high)
+/**
+ * ×¢²á²¢³õÊ¼»¯led
+ */
+int led_register(led_dev_t *led)
 {
-    assert(name != NULL);
+    assert_param(led != NULL);
 
-    strcpy(led1.name, name);
-    led1.pin = pin;
-    led1.active_high = active_high;
+    gpio_init(led->pin);
+    gpio_set_mode(led->pin, led->pin_mode);
 
-    gpio_init(pin);
-    gpio_set_mode(pin, GPIO_PIN_MODE_OUTPUT_OD);
-
-    return &led1;
+    return device_register((dev_t*)led);
 }
 
 void led_on(led_dev_t *led)

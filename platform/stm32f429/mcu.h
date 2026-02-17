@@ -29,8 +29,8 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_hal.h"
 
-void SystemClock_Config(void);
 void Error_Handler(void);
+void stm32f429_init(void);
 
 #ifdef __cplusplus
 }

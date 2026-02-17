@@ -1,6 +1,13 @@
+#ifndef __GPIO_H
+#define __GPIO_H
+
 
 #include "def.h"
+#include "autoconf.h"
+
+#ifdef CONFIG_PLATFORM_STM32F429
 #include "gpio_stm32f429.h"
+#endif
 
 /* public define ------------------------------------------------------------ */
 enum gpio_mode
@@ -20,3 +27,7 @@ void gpio_set_mode(uint16_t pin, uint8_t mode);
 bool gpio_get(uint16_t pin);
 void gpio_set(uint16_t pin, bool status);
 void gpio_toggle(uint16_t pin);
+
+
+
+#endif

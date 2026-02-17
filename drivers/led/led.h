@@ -2,15 +2,17 @@
 #define __LED_H
 
 #include "def.h"
+#include "device.h"
 
 typedef struct {
-    char name[20];
+    dev_t dev;
     uint16_t pin;
+    uint8_t pin_mode;
     bool active_high;      // 高电平有效
 } led_dev_t;
 
 
-led_dev_t* led_init(const char *name, uint16_t pin, bool active_high);
+int led_register(led_dev_t *led);
 void led_on(led_dev_t *led);
 void led_off(led_dev_t *led);
 void led_toggle(led_dev_t *led);

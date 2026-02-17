@@ -70,7 +70,7 @@ endif
 
 # Default target (must be first target)
 .PHONY: all
-all: $(BUILD_DIR)/$(PROJECT).elf $(BUILD_DIR)/$(PROJECT).hex $(BUILD_DIR)/$(PROJECT).bin
+all: check-autoconf $(BUILD_DIR)/$(PROJECT).elf $(BUILD_DIR)/$(PROJECT).hex $(BUILD_DIR)/$(PROJECT).bin
 	@echo "Build complete!"
 	@$(SZ) $(BUILD_DIR)/$(PROJECT).elf
 
@@ -110,6 +110,10 @@ oldconfig: conf
 olddefconfig: conf
 	@echo "Update old defaults to new defaults"
 	@make -f scripts/kconfig.mk olddefconfig
+
+syncconfig: conf
+	@echo "Syncing configuration to generate autoconf.h"
+	@scripts/kconfig/conf --syncconfig Kconfig
 
 # Build mconf tool if not exists
 mconf:
@@ -212,6 +216,7 @@ endif
 # Include paths
 INCLUDES := -Iplatform
 INCLUDES += -I$(PLATFORM_DIR)
+INCLUDES += -Iinclude/generated/
 
 # Platform-specific include paths
 ifeq ($(CONFIG_PLATFORM_STM32F429),y)
@@ -238,6 +243,16 @@ INCLUDES += -Idrivers/uart
 INCLUDES += -Idrivers/i2c
 INCLUDES += -Idrivers/spi
 
+# Autoconf.h generation rule
+# Check if autoconf.h exists, generate if not
+.PHONY: check-autoconf
+check-autoconf:
+	@if [ ! -f include/generated/autoconf.h ]; then \
+		echo "Generating autoconf.h..."; \
+		mkdir -p include/generated; \
+		scripts/kconfig/conf --syncconfig Kconfig 2>/dev/null; \
+	fi
+
 # Include Kbuild system with config support (only for build targets)
 ifneq ($(filter menuconfig defconfig savedefconfig oldconfig olddefconfig clean,$(MAKECMDGOALS)),)
 # Skip Kbuild for config targets
@@ -249,7 +264,7 @@ endif
 $(BUILD_DIR):
 	@mkdir -p $(BUILD_DIR)
 
-flash:
+flash: $(BUILD_DIR)/$(PROJECT).elf
 ifeq ($(CONFIG_PLATFORM_STM32F429),y)
 	openocd -f interface/cmsis-dap.cfg -f target/stm32f4x.cfg -c "program $(BUILD_DIR)/$(PROJECT).elf verify reset exit"
 else ifeq ($(CONFIG_PLATFORM_STM32F1),y)

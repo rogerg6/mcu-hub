@@ -1,18 +1,20 @@
 #include "modules.h"
 #include "platform.h"
 #include "led.h"
+#include "uart.h"
 #include "device.h"
 
 
 void run_app(void) {
-  led_dev_t *led = (led_dev_t *)get_device_by_name("led1");
-  if (!led)
-    Error_Handler();
+  uart_dev_t *uart1 = (uart_dev_t *)get_device_by_name("uart1");
+  if (!uart1) Error_Handler();
 
-  led_on(led);
+  led_dev_t *led = (led_dev_t *)get_device_by_name("led1");
+  if (!led) Error_Handler();
 
   while (1) {
     led_toggle(led);
+    uart_writeb(uart1, 'X');
     HAL_Delay(1000);
   }
 }
@@ -22,4 +24,4 @@ int main(void)
   mcu_core_init();
   modules_init();
   run_app();
-}// test
+}

@@ -22,6 +22,8 @@ enum gpio_mode
 };
 
 
+void gpio_clk_enable(uint16_t pin);
+void gpio_clk_disable(uint16_t pin);
 void gpio_init(uint16_t pin);
 void gpio_set_mode(uint16_t pin, uint8_t mode);
 bool gpio_get(uint16_t pin);

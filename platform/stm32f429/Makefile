@@ -21,3 +21,4 @@ obj-$(CONFIG_PLATFORM_STM32F429) += STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_e
 obj-$(CONFIG_PLATFORM_STM32F429) += STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c
 obj-$(CONFIG_PLATFORM_STM32F429) += STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c
 obj-$(CONFIG_PLATFORM_STM32F429) += STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c
+obj-$(CONFIG_PLATFORM_STM32F429) += STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c

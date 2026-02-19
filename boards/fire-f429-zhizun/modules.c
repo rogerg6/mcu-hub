@@ -1,6 +1,7 @@
 #include "gpio.h"
 #include "def.h"
 #include "led.h"
+#include "uart.h"
 
 // led
 led_dev_t led1 = {
@@ -13,6 +14,21 @@ led_dev_t led1 = {
     .active_high = false,
 };
 
+// uart1 for console
+uart_dev_t uart1 = {
+    .dev = {
+        .name = "uart1",
+        .next = NULL,
+    },
+    .tx_pin = GPIO_PA(9),
+    .rx_pin = GPIO_PA(10),
+    .baudrate = 115200,
+    .data_bits = 8,
+    .parity = PARITY_NONE,
+    .stop_bits = 1,
+};
+
 void modules_init(void) {
+    uart_register(&uart1);
     led_register(&led1);
 }

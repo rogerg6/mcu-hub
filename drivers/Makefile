@@ -10,3 +10,8 @@ endif
 
 # LED driver
 obj-$(CONFIG_DRIVER_LED) += led/led.c
+
+# GPIO driver
+ifeq ($(CONFIG_DRIVER_UART),y)
+obj-$(CONFIG_PLATFORM_STM32F429) += uart/uart_stm32f429.c
+endif

@@ -2,12 +2,12 @@
 #define __LED_H
 
 #include "def.h"
+#include "gpio.h"
 #include "device.h"
 
 typedef struct {
     dev_t dev;
-    uint16_t pin;
-    uint8_t pin_mode;
+    gpio_info_t gpio;
     bool active_high;      // 高电平有效
 } led_dev_t;
 

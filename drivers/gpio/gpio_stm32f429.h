@@ -14,12 +14,13 @@
 #define GPIO_PI(x)  (16*8 + x)
 
 // eg. 17 -> 'B'
-#define PIN_2_PORT(pin) ((pin >> 4) + 'A')
+#define PORTNAME_OF(pin) ((pin >> 4) + 'A')
 
 // eg. 17 -> GPIOB
-#define pin_2_gpiox(pin) ((GPIO_TypeDef*)(AHB1PERIPH_BASE + ((pin >> 4) << 10)))
+#define GPIOx_OF(pin) ((GPIO_TypeDef*)(AHB1PERIPH_BASE + ((pin >> 4) << 10)))
 
-#define pin_2_portpin(pin) (1 << (pin & 0xF))
+#define PINx_OF(pin) (pin & 0xF)
+#define PIN_OF(pin) (1 << (pin & 0xF))
 
 
 

@@ -2,7 +2,7 @@
 #include "gpio_stm32f429.h"
 
 void gpio_clk_enable(uint16_t pin) {
-  switch (PIN_2_PORT(pin)) {
+  switch (PORTNAME_OF(pin)) {
     case 'A': __HAL_RCC_GPIOA_CLK_ENABLE(); break;
     case 'B': __HAL_RCC_GPIOB_CLK_ENABLE(); break;
     case 'C': __HAL_RCC_GPIOC_CLK_ENABLE(); break;
@@ -16,7 +16,7 @@ void gpio_clk_enable(uint16_t pin) {
 }
 
 void gpio_clk_disable(uint16_t pin) {
-  switch (PIN_2_PORT(pin)) {
+  switch (PORTNAME_OF(pin)) {
     case 'A': __HAL_RCC_GPIOA_CLK_DISABLE(); break;
     case 'B': __HAL_RCC_GPIOB_CLK_DISABLE(); break;
     case 'C': __HAL_RCC_GPIOC_CLK_DISABLE(); break;
@@ -29,73 +29,97 @@ void gpio_clk_disable(uint16_t pin) {
   }
 }
 
-void gpio_init(uint16_t pin)
+void gpio_init(gpio_info_t *info)
 {
+  assert_param(info != NULL);
 
-  GPIO_InitTypeDef GPIO_InitStruct = {0};
-  GPIO_TypeDef *port = pin_2_gpiox(pin);
-  uint16_t pin_num = pin_2_portpin(pin);
-
-  gpio_clk_enable(pin);
-
-  HAL_GPIO_WritePin(port, pin_num, GPIO_PIN_SET);
-
-  GPIO_InitStruct.Pin = pin_num;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_OD;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(port, &GPIO_InitStruct);
+  gpio_clk_enable(info->pin);
+  gpio_set_mode(info, info->mode);
+  gpio_set_pull(info, info->pull);
+  gpio_set_speed(info, info->speed);
 }
 
-void gpio_set_mode(uint16_t pin, uint8_t mode) {
-  GPIO_InitTypeDef GPIO_InitStruct = {0};
-  GPIO_TypeDef *port = pin_2_gpiox(pin);
-  uint16_t pin_num = pin_2_portpin(pin);
+void gpio_set_mode(gpio_info_t *info, uint16_t mode) {
+  GPIO_TypeDef *port = GPIOx_OF(info->pin);
+  uint16_t pin_num = PINx_OF(info->pin);
 
-  GPIO_InitStruct.Pin = pin_num;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  if (mode == GPIO_PIN_MODE_INPUT) {
-    GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
+  // clear bits, equal to set input mode
+  port->MODER &= ~(0x3 << (pin_num << 1));
+
+  if (mode & GPIO_PIN_MODE_OUTPUT) {
+    port->MODER |= (0x1 << (pin_num << 1));
   }
-  else if (mode == GPIO_PIN_MODE_INPUT_PULLUP) {
-    GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-    GPIO_InitStruct.Pull = GPIO_PULLUP;
+  else if (mode & GPIO_PIN_MODE_AF) {
+    port->MODER |= (0x2 << (pin_num << 1));
   }
-  else if (mode == GPIO_PIN_MODE_INPUT_PULLDOWN) {
-    GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-    GPIO_InitStruct.Pull = GPIO_PULLDOWN;
-  }
-  else if (mode == GPIO_PIN_MODE_OUTPUT_PP) {
-    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-  }
-  else if (mode == GPIO_PIN_MODE_OUTPUT_OD) {
-    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_OD;
-    GPIO_InitStruct.Pull = GPIO_PULLUP;
+  else if (mode & GPIO_PIN_MODE_ANALOG) {
+    port->MODER |= (0x3 << (pin_num << 1));
   }
 
-  HAL_GPIO_Init(port, &GPIO_InitStruct);
+  // PP or OD
+  if (mode & GPIO_PIN_MODE_PP)
+    port->OTYPER &= ~(0x1 << pin_num);
+  else if (mode & GPIO_PIN_MODE_OD)
+    port->OTYPER |= 0x1 << pin_num;
 }
 
-bool gpio_get(uint16_t pin) {
-  GPIO_TypeDef *port = pin_2_gpiox(pin);
-  uint16_t pin_num = pin_2_portpin(pin);
+void gpio_set_pull(gpio_info_t *info, uint8_t pull) {
+  GPIO_TypeDef *port = GPIOx_OF(info->pin);
+  uint16_t pin_num = PINx_OF(info->pin);
 
-  return HAL_GPIO_ReadPin(port, pin_num);
+  // clear bits, equal to set pin to float mode
+  port->PUPDR &= ~(3 << (pin_num << 1));
+
+  if (pull & GPIO_PIN_PULLUP) {
+    port->PUPDR |= (0x1 << (pin_num << 1));
+  }
+  else if (pull & GPIO_PIN_PULLDOWN) {
+    port->PUPDR |= (0x2 << (pin_num << 1));
+  }
+}
+
+void gpio_set_speed(gpio_info_t *info, uint8_t speed) {
+  GPIO_TypeDef *port = GPIOx_OF(info->pin);
+  uint16_t pin_num = PINx_OF(info->pin);
+
+  // low speed 2MHz
+  port->OSPEEDR &= ~(3 << (pin_num << 1));
+
+  if (speed == GPIO_PIN_SPEED_MEDIUM) {
+    // 25MHz
+    port->OSPEEDR |= (0x1 << (pin_num << 1));
+  }
+  else if (speed == GPIO_PIN_SPEED_HIGH) {
+    // 50MHz
+    port->OSPEEDR |= (0x2 << (pin_num << 1));
+  }
+  else if (speed == GPIO_PIN_SPEED_VERY_HIGH) {
+    // 30 pF 时为 100 MHz（高速）（15 pF 时为 80 MHz 输出（最大速度））
+    port->OSPEEDR |= (0x3 << (pin_num << 1));
+  }
+}
+
+bool gpio_get(gpio_info_t *info) {
+  GPIO_TypeDef *port = GPIOx_OF(info->pin);
+  uint16_t pin_num = PINx_OF(info->pin);
+
+  return (port->IDR & pin_num) ? true : false;
 }
 
 
-void gpio_set(uint16_t pin, bool val) {
-  GPIO_TypeDef *port = pin_2_gpiox(pin);
-  uint16_t pin_num = pin_2_portpin(pin);
+void gpio_set(gpio_info_t *info, bool val) {
+  GPIO_TypeDef *port = GPIOx_OF(info->pin);
+  uint16_t pin_num = PINx_OF(info->pin);
 
-  HAL_GPIO_WritePin(port, pin_num, val);
+  if(val == true)
+    port->BSRR = (uint32_t)pin_num;
+  else
+    port->BSRR = (uint32_t)pin_num << 16U;
 }
 
-void gpio_toggle(uint16_t pin) {
-  GPIO_TypeDef *port = pin_2_gpiox(pin);
-  uint16_t pin_num = pin_2_portpin(pin);
+void gpio_toggle(gpio_info_t *info) {
+  GPIO_TypeDef *port = GPIOx_OF(info->pin);
+  uint16_t pin_num = PINx_OF(info->pin);
 
-  port->ODR ^= pin_num;
+  port->ODR ^= (1 << pin_num);
 }

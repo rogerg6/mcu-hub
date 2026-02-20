@@ -20,10 +20,10 @@ int uart_init(uart_dev_t *dev){
 
     GPIO_InitTypeDef GPIO_InitStruct = {0};
     UART_HandleTypeDef *huart;
-    GPIO_TypeDef *tx_port = pin_2_gpiox(dev->tx_pin);
-    GPIO_TypeDef *rx_port = pin_2_gpiox(dev->rx_pin);
-    uint16_t tx_pin_num = pin_2_portpin(dev->tx_pin);
-    uint16_t rx_pin_num = pin_2_portpin(dev->rx_pin);
+    GPIO_TypeDef *tx_port = GPIOx_OF(dev->tx_pin);
+    GPIO_TypeDef *rx_port = GPIOx_OF(dev->rx_pin);
+    uint16_t tx_pin_num = PIN_OF(dev->tx_pin);
+    uint16_t rx_pin_num = PIN_OF(dev->rx_pin);
 
     __HAL_RCC_USART1_CLK_ENABLE();
     gpio_clk_enable(dev->tx_pin);
@@ -79,10 +79,10 @@ err:
 void uart_deinit(uart_dev_t *dev){
     assert_param(dev != NULL);
 
-    GPIO_TypeDef *tx_port = pin_2_gpiox(dev->tx_pin);
-    GPIO_TypeDef *rx_port = pin_2_gpiox(dev->rx_pin);
-    uint16_t tx_pin_num = pin_2_portpin(dev->tx_pin);
-    uint16_t rx_pin_num = pin_2_portpin(dev->rx_pin);
+    GPIO_TypeDef *tx_port = GPIOx_OF(dev->tx_pin);
+    GPIO_TypeDef *rx_port = GPIOx_OF(dev->rx_pin);
+    uint16_t tx_pin_num = PINx_OF(dev->tx_pin);
+    uint16_t rx_pin_num = PINx_OF(dev->rx_pin);
 
     if (!strcmp("uart1", dev->dev.name)) {
         __HAL_RCC_USART1_CLK_DISABLE();

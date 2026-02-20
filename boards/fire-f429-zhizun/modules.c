@@ -1,3 +1,6 @@
+/**
+ * Use platform=stm32f429
+ */
 #include "gpio.h"
 #include "def.h"
 #include "led.h"
@@ -9,8 +12,13 @@ led_dev_t led1 = {
         .name = "led1",
         .next = NULL,
     },
-    .pin = GPIO_PH(10),
-    .pin_mode = GPIO_PIN_MODE_OUTPUT_OD,
+    .gpio = {
+        .pin = GPIO_PH(10),
+        .mode = GPIO_PIN_MODE_OUTPUT | GPIO_PIN_MODE_OD,
+        .pull = GPIO_PIN_PULL_FLOAT,
+        .speed = GPIO_PIN_SPEED_LOW,
+
+    },
     .active_high = false,
 };
 

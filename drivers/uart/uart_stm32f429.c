@@ -3,7 +3,7 @@
 #include "platform.h"
 #include <string.h>
 
-static UART_HandleTypeDef huart1;
+UART_HandleTypeDef huart1;
 
 int uart_register(uart_dev_t *dev){
     int err;

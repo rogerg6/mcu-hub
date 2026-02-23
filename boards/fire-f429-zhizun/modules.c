@@ -35,6 +35,17 @@ uart_dev_t uart1 = {
     .parity = PARITY_NONE,
     .stop_bits = 1,
 };
+extern UART_HandleTypeDef huart1;
+
+/**
+ * printf重定向到UART1
+ */
+int _write(int file, char *ptr, int len)
+{
+    if (HAL_OK == HAL_UART_Transmit(&huart1, (const uint8_t *)ptr, len, HAL_MAX_DELAY))
+        return len;        
+    return -1;
+}
 
 void modules_init(void) {
     uart_register(&uart1);

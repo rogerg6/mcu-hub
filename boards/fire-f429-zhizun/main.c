@@ -3,6 +3,7 @@
 #include "led.h"
 #include "uart.h"
 #include "device.h"
+#include <stdio.h>
 
 
 void run_app(void) {
@@ -11,6 +12,8 @@ void run_app(void) {
 
   led_dev_t *led = (led_dev_t *)get_device_by_name("led1");
   if (!led) Error_Handler();
+
+  sdram_test();
 
   while (1) {
     led_toggle(led);
@@ -23,5 +26,8 @@ int main(void)
 {
   mcu_core_init();
   modules_init();
+
+  printf("MCU_HUB: board=Fire stm32f429IGT6\n");
+
   run_app();
 }

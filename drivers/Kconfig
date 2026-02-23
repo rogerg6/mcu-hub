@@ -30,4 +30,10 @@ config DRIVER_SPI
 	help
 	  Enable SPI driver support
 
+config DRIVER_SDRAM
+	bool "SDRAM Driver"
+	default n
+	help
+	  Enable SDRAM driver support
+
 endmenu

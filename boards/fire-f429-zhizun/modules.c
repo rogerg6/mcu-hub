@@ -5,6 +5,7 @@
 #include "def.h"
 #include "led.h"
 #include "uart.h"
+#include "modules.h"
 
 // led
 led_dev_t led1 = {
@@ -50,4 +51,5 @@ int _write(int file, char *ptr, int len)
 void modules_init(void) {
     uart_register(&uart1);
     led_register(&led1);
+    sdram_init();
 }

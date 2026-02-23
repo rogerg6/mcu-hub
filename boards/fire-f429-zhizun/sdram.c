@@ -200,7 +200,7 @@ void sdram_test(void) {
   for (int i = 0; i < 5; i++)
     *p++ = src1[i];
 
-  p = SDRAM_BASE_ADDR;
+  p = (uint8_t*)SDRAM_BASE_ADDR;
   for (int i = 0; i < 5; i++)
     dst1[i] = *p++;
 

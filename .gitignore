@@ -7,6 +7,7 @@ build/
 
 # Cache
 .cache
+compile_commands.json
 
 # Kconfig build products
 scripts/kconfig/mconf

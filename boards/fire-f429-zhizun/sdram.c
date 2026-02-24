@@ -77,7 +77,7 @@ static void IS42S16400J_init(void)
 }
 
 // sdram
-static pinctrl_t sdram_gpios[] = {
+static gpio_info_t sdram_pins[] = {
     {GPIOF, {GPIO_PIN_0, GPIO_MODE_AF_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_VERY_HIGH, GPIO_AF12_FMC}},// FMC_A0
     {GPIOF, {GPIO_PIN_1, GPIO_MODE_AF_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_VERY_HIGH, GPIO_AF12_FMC}},// FMC_A1
     {GPIOF, {GPIO_PIN_2, GPIO_MODE_AF_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_VERY_HIGH, GPIO_AF12_FMC}},// FMC_A2
@@ -122,22 +122,16 @@ static pinctrl_t sdram_gpios[] = {
 
 static void sdram_gpio_init(void) {
     __HAL_RCC_FMC_CLK_ENABLE();
-    __HAL_RCC_GPIOC_CLK_ENABLE();
-    __HAL_RCC_GPIOD_CLK_ENABLE();
-    __HAL_RCC_GPIOE_CLK_ENABLE();
-    __HAL_RCC_GPIOF_CLK_ENABLE();
-    __HAL_RCC_GPIOG_CLK_ENABLE();
-    __HAL_RCC_GPIOH_CLK_ENABLE();
 
-    int n = sizeof(sdram_gpios) / sizeof(pinctrl_t);
+    int n = sizeof(sdram_pins) / sizeof(gpio_info_t);
     for (int i = 0; i < n; i++)
-      HAL_GPIO_Init(sdram_gpios[i].port, &sdram_gpios[i].config);
+      gpio_init(&sdram_pins[i]);
 }
 
 static void sdram_gpio_deinit(void) {
     __HAL_RCC_FMC_CLK_DISABLE();
-    for (int i = 0; i < sizeof(sdram_gpios); i++)
-        HAL_GPIO_DeInit(sdram_gpios[i].port, sdram_gpios[i].config.Pin);
+    for (int i = 0; i < sizeof(sdram_pins); i++)
+        gpio_deinit(&sdram_pins[i]);
 }
 
 void HAL_SDRAM_MspInit(SDRAM_HandleTypeDef* sdramHandle){

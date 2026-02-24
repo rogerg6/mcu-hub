@@ -4,6 +4,7 @@
 #include "platform.h"
 #include "def.h"
 #include "device.h"
+#include "gpio.h"
 
 enum PARIT_TYPE {
     PARITY_NONE=0,
@@ -15,8 +16,8 @@ typedef struct {
     dev_t dev;
 
     void *handle;       // ¾ä±ú
-    uint16_t tx_pin;
-    uint16_t rx_pin;
+    gpio_info_t tx_pin;
+    gpio_info_t rx_pin;
 
     uint32_t baudrate;
     uint8_t data_bits;

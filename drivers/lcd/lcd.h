@@ -3,6 +3,7 @@
 #define __LCD_H
 
 #include "platform.h"
+#include "gpio.h"
 #include "../common/font/fonts.h"
 
 #define  PIXEL_R_PTR(x, y) ((uint8_t *)(lcd_fb_addr + (y * LCD_PIXEL_WIDTH + x) * 3))
@@ -31,6 +32,11 @@ typedef enum pixel_format {
 } pixel_fmt_t;
 
 typedef struct {
+    gpio_info_t *pins;
+    int n_pins;
+    gpio_info_t *bl_pin;
+    gpio_info_t *disp_pin;
+
     uint16_t width;         // ÆÁÄ»¿í horizontal
     uint16_t height;        // ÆÁÄ»¸ß vertical
     uint16_t hsw;           // hsync Âö¿í clk¸öÊý

@@ -14,6 +14,7 @@ font_t *cur_font = &Font12x12;
 uint8_t thickess = 1;
 
 
+#if 0
 void HAL_LTDC_MspInit(LTDC_HandleTypeDef* ltdcHandle)
 {
 
@@ -26,9 +27,7 @@ void HAL_LTDC_MspInit(LTDC_HandleTypeDef* ltdcHandle)
     PeriphClkInitStruct.PLLSAI.PLLSAIR = 2;
     PeriphClkInitStruct.PLLSAIDivR = RCC_PLLSAIDIVR_2;
     if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
-    {
       Error_Handler();
-    }
 
     /* LTDC clock enable */
     __HAL_RCC_LTDC_CLK_ENABLE();
@@ -197,6 +196,7 @@ void HAL_LTDC_MspDeInit(LTDC_HandleTypeDef* ltdcHandle)
     HAL_NVIC_DisableIRQ(LTDC_IRQn);
   }
 }
+#endif
 
 
 void lcd_init(lcd_info_t *info)
@@ -209,6 +209,30 @@ void lcd_init(lcd_info_t *info)
 	lcd_fb_addr = info->fb_base_addr;
 	LCD_PIXEL_WIDTH = info->width;
 	LCD_PIXEL_HEIGHT = info->height;
+
+  // gpio init
+  for (int i = 0; i < info->n_pins; i++)
+    gpio_init(&info->pins[i]);
+
+  /* ltdc clock init
+   * lcd clk = HSI / M * PLLSAIN / PLLSAIR / PLLSAIDivR
+   *         = 16M / 8 * 50 / 2 / 2
+   *         = 25MHz
+  **/
+  RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};
+  PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_LTDC;
+  PeriphClkInitStruct.PLLSAI.PLLSAIN = 50;
+  PeriphClkInitStruct.PLLSAI.PLLSAIR = 2;
+  PeriphClkInitStruct.PLLSAIDivR = RCC_PLLSAIDIVR_2;
+  if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
+    Error_Handler();
+
+  __HAL_RCC_LTDC_CLK_ENABLE();
+
+
+  /* LTDC interrupt Init */
+  HAL_NVIC_SetPriority(LTDC_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(LTDC_IRQn);
 
 	// ldtc init
 	LTDC_LayerCfgTypeDef pLayerCfg = {0};
@@ -252,13 +276,17 @@ void lcd_init(lcd_info_t *info)
 	pLayerCfg.Backcolor.Green = 0;
 	pLayerCfg.Backcolor.Red = 0;
 	if (HAL_LTDC_ConfigLayer(&hltdc, &pLayerCfg, 0) != HAL_OK)
-		Error_Handler();
+    Error_Handler();
+
+  // 开启背光和显示
+  gpio_set(info->bl_pin, true);
+  gpio_set(info->disp_pin, true);
 
 }
 
 void lcd_set_fb(uint32_t addr)
 {
-    assert_param(addr != 0);
+  assert_param(addr != 0);
 	lcd_fb_addr = addr;
 }
 
@@ -362,13 +390,6 @@ void lcd_putstr(uint16_t x, uint16_t y, const char *s)
 
 void lcd_test(void) {
   lcd_clear_win(LCD_COLOR_WHITE);
-
-//   for (int y = 0; y < LCD_PIXEL_HEIGHT; y++)
-//     for (int x = 0; x < LCD_PIXEL_WIDTH; x++) {
-// 		printf("pixel=%d ", *(uint8_t*)(lcd_fb_addr+3*(y*LCD_PIXEL_WIDTH+x)));
-// 		printf("pixel=%d ", *(uint8_t*)(lcd_fb_addr+3*(y*LCD_PIXEL_WIDTH+x) + 1));
-// 		printf("pixel=%d\n", *(uint8_t*)(lcd_fb_addr+3*(y*LCD_PIXEL_WIDTH+x + 2)));
-// 	}
 
   lcd_set_thickness(5);
   lcd_draw_line(0, 240, 400, LCD_DIR_HORIZONTAL, LCD_COLOR_BLACK);

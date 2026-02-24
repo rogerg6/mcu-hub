@@ -7,7 +7,7 @@
 
 typedef struct {
     dev_t dev;
-    gpio_info_t gpio;
+    gpio_info_t pin;
     bool active_high;      // 高电平有效
 } led_dev_t;
 

@@ -1,4 +1,5 @@
 /**
+ * @brief 该文件描述板级硬件信息，类似设备树。调用设备接口注册设备到系统中
  * Use platform=stm32f429
  */
 #include "gpio.h"
@@ -14,13 +15,7 @@ led_dev_t led1 = {
         .name = "led1",
         .next = NULL,
     },
-    .gpio = {
-        .pin = GPIO_PH(10),
-        .mode = GPIO_PIN_MODE_OUTPUT | GPIO_PIN_MODE_OD,
-        .pull = GPIO_PIN_PULL_FLOAT,
-        .speed = GPIO_PIN_SPEED_LOW,
-
-    },
+    .pin = { GPIOH, {GPIO_PIN_10, GPIO_MODE_OUTPUT_OD, GPIO_NOPULL, GPIO_SPEED_FREQ_LOW} },
     .active_high = false,
 };
 
@@ -30,8 +25,8 @@ uart_dev_t uart1 = {
         .name = "uart1",
         .next = NULL,
     },
-    .tx_pin = GPIO_PA(9),
-    .rx_pin = GPIO_PA(10),
+    .tx_pin = {GPIOA, {GPIO_PIN_9, GPIO_MODE_AF_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_MEDIUM, GPIO_AF7_USART1} },
+    .rx_pin = {GPIOA, {GPIO_PIN_10, GPIO_MODE_AF_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_MEDIUM, GPIO_AF7_USART1} },
     .baudrate = 115200,
     .data_bits = 8,
     .parity = PARITY_NONE,
@@ -49,7 +44,15 @@ int _write(int file, char *ptr, int len)
 
 // 5.0寸lcd tft 
 /* LTDC GPIO Configuration */
-pinctrl_t lcd_pins[] = {
+static gpio_info_t lcd_pins[] = {
+    {GPIOD, {GPIO_PIN_7, GPIO_MODE_OUTPUT_PP, GPIO_PULLUP, GPIO_SPEED_FREQ_LOW}}, // LCD_BL
+    {GPIOD, {GPIO_PIN_4, GPIO_MODE_OUTPUT_PP, GPIO_PULLUP, GPIO_SPEED_FREQ_LOW}}, // LCD_DISP
+
+    {GPIOG, {GPIO_PIN_7, GPIO_MODE_AF_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_HIGH, GPIO_AF14_LTDC}},     // LTDC_CLK
+    {GPIOI, {GPIO_PIN_9, GPIO_MODE_AF_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_HIGH, GPIO_AF14_LTDC}},     // LTDC_VSYNC
+    {GPIOI, {GPIO_PIN_10, GPIO_MODE_AF_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_HIGH, GPIO_AF14_LTDC}},    // LTDC_HSYNC
+    {GPIOF, {GPIO_PIN_10, GPIO_MODE_AF_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_HIGH, GPIO_AF14_LTDC}},    // LTDC_DE
+
     {GPIOH, {GPIO_PIN_2, GPIO_MODE_AF_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_HIGH, GPIO_AF14_LTDC}},     // LTDC_R0
     {GPIOH, {GPIO_PIN_3, GPIO_MODE_AF_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_HIGH, GPIO_AF14_LTDC}},     // LTDC_R1
     {GPIOH, {GPIO_PIN_8, GPIO_MODE_AF_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_HIGH, GPIO_AF14_LTDC}},     // LTDC_R2
@@ -74,16 +77,8 @@ pinctrl_t lcd_pins[] = {
     {GPIOG, {GPIO_PIN_11, GPIO_MODE_AF_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_HIGH, GPIO_AF14_LTDC}},    // LTDC_B3
     {GPIOI, {GPIO_PIN_4, GPIO_MODE_AF_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_HIGH, GPIO_AF14_LTDC}},     // LTDC_B4
     {GPIOA, {GPIO_PIN_3, GPIO_MODE_AF_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_HIGH, GPIO_AF14_LTDC}},     // LTDC_B5
-    {GPIOA, {GPIO_PIN_8, GPIO_MODE_AF_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_HIGH, GPIO_AF14_LTDC}},     // LTDC_B6
-    {GPIOA, {GPIO_PIN_9, GPIO_MODE_AF_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_HIGH, GPIO_AF14_LTDC}},     // LTDC_B7
-
-    {GPIOG, {GPIO_PIN_7, GPIO_MODE_AF_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_HIGH, GPIO_AF14_LTDC}},     // LTDC_CLK
-    {GPIOI, {GPIO_PIN_9, GPIO_MODE_AF_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_HIGH, GPIO_AF14_LTDC}},     // LTDC_VSYNC
-    {GPIOI, {GPIO_PIN_10, GPIO_MODE_AF_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_HIGH, GPIO_AF14_LTDC}},    // LTDC_HSYNC
-    {GPIOF, {GPIO_PIN_10, GPIO_MODE_AF_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_HIGH, GPIO_AF14_LTDC}},    // LTDC_DE
-
-    {GPIOD, {GPIO_PIN_7, GPIO_MODE_OUTPUT_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_LOW}}, // LCD_BL
-    {GPIOD, {GPIO_PIN_4, GPIO_MODE_OUTPUT_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_LOW}}, // LCD_DISP
+    {GPIOB, {GPIO_PIN_8, GPIO_MODE_AF_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_HIGH, GPIO_AF14_LTDC}},     // LTDC_B6
+    {GPIOB, {GPIO_PIN_9, GPIO_MODE_AF_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_HIGH, GPIO_AF14_LTDC}},     // LTDC_B7
 };
 
 lcd_info_t lcd = {
@@ -98,6 +93,11 @@ lcd_info_t lcd = {
     .pfmt = PIXEL_FORMAT_RGB888,
     .alpha = 255,
     .fb_base_addr = SDRAM_BASE_ADDR,
+
+    .pins = lcd_pins,
+    .n_pins = sizeof(lcd_pins) / sizeof(gpio_info_t),
+    .bl_pin = &lcd_pins[0],
+    .disp_pin = &lcd_pins[1],
 };
 
 void modules_init(void) {

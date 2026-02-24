@@ -17,26 +17,13 @@ int uart_register(uart_dev_t *dev){
 
 int uart_init(uart_dev_t *dev){
     assert_param(dev != NULL);
-
-    GPIO_InitTypeDef GPIO_InitStruct = {0};
     UART_HandleTypeDef *huart;
-    GPIO_TypeDef *tx_port = GPIOx_OF(dev->tx_pin);
-    GPIO_TypeDef *rx_port = GPIOx_OF(dev->rx_pin);
-    uint16_t tx_pin_num = PIN_OF(dev->tx_pin);
-    uint16_t rx_pin_num = PIN_OF(dev->rx_pin);
 
     __HAL_RCC_USART1_CLK_ENABLE();
-    gpio_clk_enable(dev->tx_pin);
-    gpio_clk_enable(dev->rx_pin);
 
-    GPIO_InitStruct.Pin = tx_pin_num;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-    GPIO_InitStruct.Alternate = GPIO_AF7_USART1;
-    HAL_GPIO_Init(tx_port, &GPIO_InitStruct);
-    GPIO_InitStruct.Pin = rx_pin_num;
-    HAL_GPIO_Init(rx_port, &GPIO_InitStruct);
+    // gpio init
+    gpio_init(&dev->tx_pin);
+    gpio_init(&dev->rx_pin);
 
     if (!strcmp("uart1", dev->dev.name)) {
         huart = &huart1;
@@ -79,17 +66,12 @@ err:
 void uart_deinit(uart_dev_t *dev){
     assert_param(dev != NULL);
 
-    GPIO_TypeDef *tx_port = GPIOx_OF(dev->tx_pin);
-    GPIO_TypeDef *rx_port = GPIOx_OF(dev->rx_pin);
-    uint16_t tx_pin_num = PINx_OF(dev->tx_pin);
-    uint16_t rx_pin_num = PINx_OF(dev->rx_pin);
-
     if (!strcmp("uart1", dev->dev.name)) {
         __HAL_RCC_USART1_CLK_DISABLE();
     }
 
-    HAL_GPIO_DeInit(tx_port, tx_pin_num);
-    HAL_GPIO_DeInit(rx_port, rx_pin_num);
+    gpio_deinit(&dev->tx_pin);
+    gpio_deinit(&dev->rx_pin);
 }
 
 int uart_readb(uart_dev_t *dev, uint8_t *val){

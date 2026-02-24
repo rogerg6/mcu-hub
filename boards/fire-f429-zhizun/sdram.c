@@ -4,6 +4,7 @@
 #include "platform.h"
 #include "modules.h"
 #include <stdio.h>
+#include "gpio.h"
 
 #define SDRAM_MODEREG_BURST_LENGTH_1             ((uint16_t)0x0000)
 #define SDRAM_MODEREG_BURST_LENGTH_2             ((uint16_t)0x0001)
@@ -16,11 +17,6 @@
 #define SDRAM_MODEREG_OPERATING_MODE_STANDARD    ((uint16_t)0x0000)
 #define SDRAM_MODEREG_WRITEBURST_MODE_PROGRAMMED ((uint16_t)0x0000) 
 #define SDRAM_MODEREG_WRITEBURST_MODE_SINGLE     ((uint16_t)0x0200)      
-
-typedef struct {
-    GPIO_TypeDef *port;
-    GPIO_InitTypeDef config;
-} fmc_sdram_gpio_t;
 
 SDRAM_HandleTypeDef hsdram2;
 
@@ -81,7 +77,7 @@ static void IS42S16400J_init(void)
 }
 
 // sdram
-static fmc_sdram_gpio_t sdram_gpios[] = {
+static pinctrl_t sdram_gpios[] = {
     {GPIOF, {GPIO_PIN_0, GPIO_MODE_AF_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_VERY_HIGH, GPIO_AF12_FMC}},// FMC_A0
     {GPIOF, {GPIO_PIN_1, GPIO_MODE_AF_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_VERY_HIGH, GPIO_AF12_FMC}},// FMC_A1
     {GPIOF, {GPIO_PIN_2, GPIO_MODE_AF_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_VERY_HIGH, GPIO_AF12_FMC}},// FMC_A2
@@ -133,7 +129,7 @@ static void sdram_gpio_init(void) {
     __HAL_RCC_GPIOG_CLK_ENABLE();
     __HAL_RCC_GPIOH_CLK_ENABLE();
 
-    int n = sizeof(sdram_gpios) / sizeof(fmc_sdram_gpio_t);
+    int n = sizeof(sdram_gpios) / sizeof(pinctrl_t);
     for (int i = 0; i < n; i++)
       HAL_GPIO_Init(sdram_gpios[i].port, &sdram_gpios[i].config);
 }

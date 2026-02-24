@@ -36,4 +36,10 @@ config DRIVER_SDRAM
 	help
 	  Enable SDRAM driver support
 
+config DRIVER_LCD
+	bool "LCD TFT Driver"
+	default n
+	help
+	  Enable LCD TFT driver support
+
 endmenu

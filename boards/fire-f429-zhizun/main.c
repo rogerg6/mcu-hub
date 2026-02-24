@@ -2,6 +2,7 @@
 #include "platform.h"
 #include "led.h"
 #include "uart.h"
+#include "lcd.h"
 #include "device.h"
 #include <stdio.h>
 
@@ -14,6 +15,7 @@ void run_app(void) {
   if (!led) Error_Handler();
 
   sdram_test();
+  lcd_test();
 
   while (1) {
     led_toggle(led);

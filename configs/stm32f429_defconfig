@@ -18,6 +18,7 @@ CONFIG_DRIVER_UART=y
 # CONFIG_DRIVER_I2C is not set
 # CONFIG_DRIVER_SPI is not set
 CONFIG_DRIVER_SDRAM=y
+CONFIG_DRIVER_LCD=y
 # end of Driver Selection
 
 #

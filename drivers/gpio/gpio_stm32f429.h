@@ -22,6 +22,11 @@
 #define PINx_OF(pin) (pin & 0xF)
 #define PIN_OF(pin) (1 << (pin & 0xF))
 
+typedef struct {
+    GPIO_TypeDef *port;
+    GPIO_InitTypeDef config;
+} pinctrl_t;
+
 
 
 #endif

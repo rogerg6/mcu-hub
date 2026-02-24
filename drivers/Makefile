@@ -15,3 +15,8 @@ obj-$(CONFIG_DRIVER_LED) += led/led.c
 ifeq ($(CONFIG_DRIVER_UART),y)
 obj-$(CONFIG_PLATFORM_STM32F429) += uart/uart_stm32f429.c
 endif
+
+ifeq ($(CONFIG_DRIVER_LCD),y)
+obj-$(CONFIG_PLATFORM_STM32F429) += lcd/ltdc_stm32f429.c
+obj-y += common/font/fonts.c
+endif

@@ -242,6 +242,7 @@ INCLUDES += -Idrivers/gpio
 INCLUDES += -Idrivers/uart
 INCLUDES += -Idrivers/i2c
 INCLUDES += -Idrivers/spi
+INCLUDES += -Idrivers/lcd
 
 # Autoconf.h generation rule
 # Check if autoconf.h exists, generate if not

@@ -23,6 +23,7 @@ obj-$(CONFIG_DRIVER_UART) += STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c
 obj-$(CONFIG_DRIVER_SDRAM) += STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_fmc.c
 obj-$(CONFIG_DRIVER_SDRAM) += STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_sdram.c
 
+obj-$(CONFIG_DRIVER_LCD) += STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc.c
 # obj-$(CONFIG_PLATFORM_STM32F429) += STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c
 # obj-$(CONFIG_PLATFORM_STM32F429) += STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c
 # obj-$(CONFIG_PLATFORM_STM32F429) += STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c

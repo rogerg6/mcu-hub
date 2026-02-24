@@ -4,15 +4,15 @@
 
 choice
 	prompt "Select Board"
-	default BOARD_FIRE_F429_ZHIZUN
+	default BOARD_FIRE_F429_SUPREME
 	help
 	  Select the target platform for mcu-hub
 
-config BOARD_FIRE_F429_ZHIZUN
-	bool "Fire F429 ZHIZUN Edition"
+config BOARD_FIRE_F429_SUPREME
+	bool "Fire F429 Supreme Edition"
 	select PLATFORM_STM32F429
 	help
-	  FireFly F429 zhizhun board
+	  FireFly F429 Supreme board
 
 endchoice
 

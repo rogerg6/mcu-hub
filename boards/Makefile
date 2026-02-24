@@ -1,3 +1,3 @@
 
 
-obj-$(CONFIG_PLATFORM_STM32F429) += fire-f429-zhizun/
+obj-$(CONFIG_BOARD_FIRE_F429_SUPREME) += Fire_F429_Supreme/

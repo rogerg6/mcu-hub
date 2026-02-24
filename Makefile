@@ -94,9 +94,9 @@ defconfig: conf
 	@cat .config
 
 # STM32F429 defconfig
-stm32f429_defconfig: conf
-	@echo "Creating default configuration from configs/stm32f429_defconfig"
-	@make -f scripts/kconfig.mk do_defconfig DEFCONFIG=stm32f429_defconfig
+Fire_F429_Supreme_defconfig: conf
+	@echo "Creating default configuration from configs/Fire_F429_Supreme_defconfig"
+	@make -f scripts/kconfig.mk do_defconfig DEFCONFIG=Fire_F429_Supreme_defconfig
 	@cat .config
 
 savedefconfig:

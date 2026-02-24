@@ -28,7 +28,7 @@ config PLATFORM_STC89
 
 config PLATFORM
 	string
-	default "stm32f429" if BOARD_FIRE_F429_ZHIZUN
+	default "stm32f429" if BOARD_FIRE_F429_SUPREME
 	default "stm32f1" if PLATFORM_STM32F1
 	default "esp32" if PLATFORM_ESP32
 	default "stc89" if PLATFORM_STC89
